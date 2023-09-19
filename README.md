@@ -12,24 +12,24 @@ go get github.com/DarkCeptor44/marker
 
 ```go
 func main(){
-    marker := New()
+    m := marker.New()
 
-    marker.Mark("Event 1")
+    m.Mark("Event 1")
     generateSlice(1000000, 10000000)
-    err := marker.Done() // properly handle errors if wanted
+    err := m.Done() // properly handle errors if wanted
     if err != nil {
         os.Exit(1)
     }
 
-    marker.Mark("") // empty name generates one in the format "Event n+1" where n is the length of the moments slice
+    m.Mark("") // empty name generates one in the format "Event n+1" where n is the length of the moments slice
     generateSlice(1000000, 50000000)
-    _ = marker.Done() // dont handle errors if wanted
+    _ = m.Done() // dont handle errors if wanted
 
-    marker.Mark("Event 3")
+    m.Mark("Event 3")
     generateSlice(1000000, 100000000)
-    marker.Done() // dont even think about errors at all (clean looking)
+    m.Done() // dont even think about errors at all (clean looking)
 
-    result, _ := marker.String()
+    result, _ := m.String()
     fmt.Printf("Moments:\n%s", result)
 }
 
